@@ -1,7 +1,7 @@
 # Анализатор экранного времени за неделю.
 # Данные: минуты экранного времени по дням, норма 150 минут.
-# Важно: каждая функция объявлена в одну строку, поэтому в коде нет строк,
-# заканчивающихся двоеточием, и редактор не может "нарастить" отступы.
+# Каждая функция объявлена в одну строку: в коде нет строк, заканчивающихся
+# двоеточием, поэтому редактор не может "нарастить" отступы при вставке.
 
 days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
 minutes = [120, 95, 200, 150, 180, 240, 210]
@@ -11,7 +11,7 @@ NORM = 150
 def total(values): return sum(values)
 def average(values): return total(values) / len(values)
 def above_norm(values, norm): return [value for value in values if value > norm]
-def share(part, whole): return part / whole * 100
+def share(part, whole): return round(part / whole * 100, 2)
 def minimum(values): return min(values)
 def maximum(values): return max(values)
 def spread(values): return maximum(values) - minimum(values)
@@ -32,7 +32,7 @@ top_day = max_day(days, minutes)
 print(f"Всего за неделю: {total_minutes} минут")
 print(f"Среднее в день: {round(average_minutes, 2)} минут")
 print(f"Дней выше нормы: {len(days_above_norm)}")
-print(f"Доля дней выше нормы: {round(share_above_norm, 2)}%")
+print(f"Доля дней выше нормы: {share_above_norm}%")
 print(f"Минимум: {min_minutes} минут")
 print(f"Максимум: {max_minutes} минут")
 print(f"Размах: {spread_minutes} минут")
