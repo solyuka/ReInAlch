@@ -1,56 +1,21 @@
-"""Анализатор экранного времени за неделю.
-
-Данные: экранное время по дням, норма — 150 минут.
-Сначала объявляем функции для каждого показателя, затем вызываем их
-и печатаем итоговый отчёт: каждое число берётся из своей функции.
-"""
+# Анализатор экранного времени за неделю.
+# Данные: минуты экранного времени по дням, норма 150 минут.
+# Важно: каждая функция объявлена в одну строку, поэтому в коде нет строк,
+# заканчивающихся двоеточием, и редактор не может "нарастить" отступы.
 
 days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
 minutes = [120, 95, 200, 150, 180, 240, 210]
 NORM = 150
 
 
-def total(values):
-    """Сумма всех значений."""
-    result = 0
-    for value in values:
-        result += value
-    return result
-
-
-def average(values):
-    """Среднее значение."""
-    return total(values) / len(values)
-
-
-def above_norm(values, norm):
-    """Список значений выше нормы."""
-    return [value for value in values if value > norm]
-
-
-def share(part, whole):
-    """Доля части от целого в процентах."""
-    return part / whole * 100
-
-
-def minimum(values):
-    """Минимальное значение."""
-    return min(values)
-
-
-def maximum(values):
-    """Максимальное значение."""
-    return max(values)
-
-
-def spread(values):
-    """Размах: разница между максимумом и минимумом."""
-    return maximum(values) - minimum(values)
-
-
-def max_day(days, values):
-    """Название дня с максимальным значением."""
-    return days[values.index(maximum(values))]
+def total(values): return sum(values)
+def average(values): return total(values) / len(values)
+def above_norm(values, norm): return [value for value in values if value > norm]
+def share(part, whole): return part / whole * 100
+def minimum(values): return min(values)
+def maximum(values): return max(values)
+def spread(values): return maximum(values) - minimum(values)
+def max_day(days, values): return days[values.index(maximum(values))]
 
 
 # Вызываем функции по очереди и сохраняем результаты.
@@ -63,7 +28,7 @@ max_minutes = maximum(minutes)
 spread_minutes = spread(minutes)
 top_day = max_day(days, minutes)
 
-# Итоговый отчёт: каждое число — результат соответствующей функции.
+# Итоговый отчёт: каждое число — результат своей функции.
 print(f"Всего за неделю: {total_minutes} минут")
 print(f"Среднее в день: {round(average_minutes, 2)} минут")
 print(f"Дней выше нормы: {len(days_above_norm)}")
